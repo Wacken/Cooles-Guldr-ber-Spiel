@@ -4,7 +4,9 @@ Shader "Custom/xrayshader"
 {
 	Properties
 	{
-		_VisorRange("_VisorRange", Range (0, 20)) = 8
+		_PingModulo("_PingModulo", Range (0, 30)) = 8 
+		_VisorRange("_VisorRange", Range (0, 30)) = 8
+		_PingSpeed("_PingSpeed", Range (0, 30)) = 4
 		_CableColor("_CableColor", Color) = (1, 0, 0.5, 1)
 		//_MainTex("Texture", 2D) = "white" {}
 		//_RampTex("Ramp", 2D) = "white" {}
@@ -150,6 +152,8 @@ Shader "Custom/xrayshader"
 			float4 _PlayerPos;
 			uniform float4 _SilColor;
 			float _VisorRange;
+			float _PingSpeed;
+			float _PingModulo;
 			struct vertexInput
 			{
 				float4 vertex : POSITION;
@@ -172,13 +176,25 @@ Shader "Custom/xrayshader"
 
 			float4 frag(vertexOutput input) : COLOR
 			{
-				float3 distance = (input.worldPos.xyz-_PlayerPos.xyz);
- 			if(length(distance)>_VisorRange){
+			float alphaVal = 1;
+				float distance = length(input.worldPos.xyz-_PlayerPos.xyz);
 
+				/*
+				alphaVal = fmod(400 + distance +_Time.y*_PingSpeed, _PingModulo);
+ 
+				if(alphaVal > _PingModulo-1){
+				alphaVal = _PingModulo- alphaVal;
+				}
+				alphaVal = max(alphaVal, (1-distance/ _VisorRange));
+				//alphaVal = fmod(400 + distance -sin(_Time.y*1)*10, 4);*/
+
+ 			if( distance > _VisorRange ){ //&& alphaVal  > 1	//this thing is not useless
+			
 			//clip(-1);
 			return float4(1,0,1,0);
 			}
-				return _SilColor;
+			return(float4(1,0,1,0));
+				return float4( _SilColor.xyz, 1-alphaVal) ;
 			}
 
 			ENDCG
@@ -210,6 +226,8 @@ Shader "Custom/xrayshader"
 			// Properties
 			 float4 _PlayerPos;
 			 float _VisorRange;
+			 float _PingSpeed;
+			 float _PingModulo;
 			uniform float4 _SilColor;
 
 			struct vertexInput
@@ -232,16 +250,33 @@ Shader "Custom/xrayshader"
 				return output;
 			}
 
-			float4 frag(vertexOutput input) : COLOR
+float4 frag(vertexOutput input) : COLOR
 			{
-				float3 distance = (input.worldPos.xyz-_PlayerPos.xyz);
-			 //return float4(frac(_PlayerPos.xyz),1);
-			if(length(distance)>_VisorRange){
+				float alphaVal = 1;
+				float distance = length(input.worldPos.xyz-_PlayerPos.xyz);
 
+				/*
+				alphaVal = fmod(400 + distance +_Time.y*_PingSpeed, _PingModulo);
+				if(alphaVal > _PingModulo-1){
+				alphaVal = _PingModulo- alphaVal;
+				}*/
+				//alphaVal = (sin(distance*5+_Time.y*0)*5-4); 
+				float _PingSparseness = 3;
+				float timeAndDist  = distance - _Time.y*_PingSpeed;
+
+				float distance2point = abs(timeAndDist-floor(timeAndDist/_PingSparseness+0.5)*_PingSparseness);
+
+				alphaVal = 1-((distance2point)); 
+
+				alphaVal = min(alphaVal, (1-distance/ _VisorRange));	//fades out the cable before it reaches max visorrange
+				//alphaVal = fmod(400 + distance -sin(_Time.y*1)*10, 4);
+ 			/*if( distance > _VisorRange ){ //&& alphaVal  > 1 
+			
 			//clip(-1);
-			 return float4(1,0,1,0);
-			}
-				return _SilColor;
+			//return float4(1,0,1,0);
+			}*/
+
+				return float4( _SilColor.xyz, sqrt(alphaVal)) ;
 			}
 
 			ENDCG
