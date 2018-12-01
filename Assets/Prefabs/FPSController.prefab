@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 20810893122912216}
   - component: {fileID: 81031947788875246}
   - component: {fileID: 124235804236480260}
+  - component: {fileID: 114165844102569622}
   m_Layer: 0
   m_Name: FirstPersonCharacter
   m_TagString: MainCamera
@@ -41,6 +42,7 @@ GameObject:
   - component: {fileID: 114251267339738608}
   - component: {fileID: 54240770944288496}
   - component: {fileID: 82435610250631728}
+  - component: {fileID: 114407470115066098}
   m_Layer: 0
   m_Name: FPSController
   m_TagString: Untagged
@@ -68,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1840245205360056}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.5, y: 20.4, z: 0}
+  m_LocalPosition: {x: 0, y: 3.46, z: -1.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4008691729127804}
@@ -104,7 +106,7 @@ Camera:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RenderingPath: -1
+  m_RenderingPath: 1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
@@ -232,6 +234,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114165844102569622
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1316433850497660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3b837de85221d3478c1ac8cf563f8af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visorMaterial: {fileID: 2100000, guid: 06b8913138e48d6429951cc79630971e, type: 2}
 --- !u!114 &114251267339738608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -355,6 +369,20 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
   m_JumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
   m_LandSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
+--- !u!114 &114407470115066098
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1840245205360056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cc81cf8a657bc445be39bb531ef3484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerObject: {fileID: 1840245205360056}
+  VisorOn: 1
+  visorMaterial: {fileID: 2100000, guid: 06b8913138e48d6429951cc79630971e, type: 2}
 --- !u!124 &124235804236480260
 Behaviour:
   m_ObjectHideFlags: 1

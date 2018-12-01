@@ -19,7 +19,10 @@ Shader "Custom/xrayshader"
 		Pass
 		{
             Tags
-			{ 
+			{	
+			            "IgnoreProjector"="True" 
+            "RenderType"="Transparent+10"
+				"Queue" = "Overlay"
 				"LightMode" = "ForwardBase" // allows shadow rec/cast
 			}
 
