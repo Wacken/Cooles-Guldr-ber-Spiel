@@ -119,7 +119,7 @@ Shader "Olanigan/IceBreak" {
             }
             float4 frag(VertexOutput i) : COLOR {//FRAGMENT SHADER 1 HEREE
 
-			 float distance = length(i.posWorld.xyz-_MonsterPos.xyz)-_DarknessNoiseRange*frac(_DarknessNoise*snoise(i.posWorld.xyz));
+			 float distance = length(i.posWorld.xyz-_MonsterPos.xyz)-_DarknessNoiseRange*(sin(_Time.y)*0.5+0.75)*frac(_DarknessNoise*snoise(i.posWorld.xyz));
 				if(distance<_DarknessDistance){
 				return float4(0,0,0,1);
 				}
@@ -323,7 +323,7 @@ Shader "Olanigan/IceBreak" {
                 return o;
             }
             float4 frag(VertexOutput i) : COLOR { 
-			float distance = length(i.posWorld.xyz-_MonsterPos.xyz)-_DarknessNoiseRange*frac(_DarknessNoise*snoise(i.posWorld.xyz));
+			float distance = length(i.posWorld.xyz-_MonsterPos.xyz)-_DarknessNoiseRange*(sin(_Time.y)*0.5+0.75)*frac(_DarknessNoise*snoise(i.posWorld.xyz));
 				if(distance<_DarknessDistance){
 				return float4(0,0,0,1);
 				}
