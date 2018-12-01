@@ -6,11 +6,12 @@ using System.Collections;
 
 public class Monster : MonoBehaviour
 {
+    public float _smellRadius = 10f;
 
-    public float lookRadius = 10f;
+    public AudioClip _monsterSound;
 
-    Transform target;
-    NavMeshAgent agent;
+    Transform _target;
+    NavMeshAgent _agent;
 
     enum MonsterState
     {
@@ -23,8 +24,8 @@ public class Monster : MonoBehaviour
 
     void Start()
     {
-        target = Player.instance.player.transform;
-        agent = GetComponent<NavMeshAgent>();
+        _target = Player.instance.player.transform;
+        _agent = GetComponent<NavMeshAgent>();
     }
 
     void Update()
@@ -35,31 +36,55 @@ public class Monster : MonoBehaviour
 
                 break;
             case MonsterState.Searching:
-                // Get the distance to the player
-                float distance = Vector3.Distance(target.position, transform.position);
-
-                // If inside the radius
-                if (distance <= lookRadius)
-                {
-                    // Move towards the player+
-                    agent.SetDestination(target.position);
-                    if (distance <= agent.stoppingDistance)
-                    {
-                        // Attack
-
-                    }
-                }
+                patroul();
                 break;
             case MonsterState.Hunting:
-
+                chasePlayer();
                 break;
         }
     }
 
+    private void chasePlayer()
+    {
+        // Get the distance to the player
+        _agent.speed *= 2;
+        float distance = Vector3.Distance(_target.position, transform.position);
+
+        // If inside the radius
+        if (distance <= _smellRadius)
+        {
+            // Move towards the player+
+            _agent.SetDestination(_target.position);
+            if (distance <= _agent.stoppingDistance)
+            {
+                // Attack
+                
+            }
+        }
+        else
+        {
+            float destDistance = Vector3.Distance(_agent.destination, transform.position);
+            if(destDistance <= _agent.stoppingDistance)
+            {
+                _agent.speed /= 2;
+                _state = MonsterState.Searching;
+            }
+        }
+    }
+
+    void patroul()
+    {
+
+
+        float distance = Vector3.Distance(_target.position, transform.position);
+        if (distance <= _smellRadius)
+        {
+            _state = MonsterState.Hunting;
+        }
+    }
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, lookRadius);
+        Gizmos.DrawWireSphere(transform.position, _smellRadius);
     }
-
 }
