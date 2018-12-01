@@ -168,7 +168,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _smellRadius: 30
-  _monsterSound: {fileID: 0}
+  _monsterSound: {fileID: 8300000, guid: e7fb31ef15588e542bb3b13a9445274c, type: 3}
+  _patroulPath:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!195 &195305705891436172
 NavMeshAgent:
   m_ObjectHideFlags: 1
