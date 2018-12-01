@@ -19,7 +19,10 @@ Shader "Custom/xrayshader"
 		Pass
 		{
             Tags
-			{ 
+			{	
+			            "IgnoreProjector"="True" 
+            "RenderType"="Transparent+10"
+				"Queue" = "Transparent+10"
 				"LightMode" = "ForwardBase" // allows shadow rec/cast
 			}
 
@@ -41,6 +44,7 @@ Shader "Custom/xrayshader"
 
 			// Properties
 			//float4 _PlayerPos; 
+			float _VisorOn;
 			float4 _CableColor;
 			//sampler2D _MainTex;
 			//sampler2D _RampTex;
@@ -129,7 +133,8 @@ Shader "Custom/xrayshader"
 		{
 			Tags
             {
-                "Queue" = "Transparent"
+			"RenderType"="Transparent+10"
+                "Queue" = "Transparent+10"
             }
 			// Won't draw where it sees ref value 4
 			Cull Front // draw back faces
@@ -154,6 +159,7 @@ Shader "Custom/xrayshader"
 			float _VisorRange;
 			float _PingSpeed;
 			float _PingModulo;
+			float _VisorOn;
 			struct vertexInput
 			{
 				float4 vertex : POSITION;
@@ -205,7 +211,7 @@ Shader "Custom/xrayshader"
 		{
 			Tags
             {
-                "Queue" = "Transparent" "RenderType"="Transparent"
+                "Queue" = "Transparent+10" "RenderType"="Transparent+10"
             }
 			// Won't draw where it sees ref value 4
 			Cull Back // draw front faces
@@ -229,6 +235,7 @@ Shader "Custom/xrayshader"
 			 float _PingSpeed;
 			 float _PingModulo;
 			uniform float4 _SilColor;
+			float _VisorOn;
 
 			struct vertexInput
 			{
@@ -275,7 +282,9 @@ float4 frag(vertexOutput input) : COLOR
 			//clip(-1);
 			//return float4(1,0,1,0);
 			}*/
-
+			if(_VisorOn < 1){
+			alphaVal = 0;
+			} 
 				return float4( _SilColor.xyz, sqrt(alphaVal)) ;
 			}
 
