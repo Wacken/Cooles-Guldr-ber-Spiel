@@ -14,8 +14,12 @@ public class Monster : MonoBehaviour
 
     enum MonsterState
     {
-
+        Idle,
+        Searching,
+        Hunting
     }
+
+    MonsterState _state = MonsterState.Searching;
 
     void Start()
     {
@@ -25,19 +29,30 @@ public class Monster : MonoBehaviour
 
     void Update()
     {
-        // Get the distance to the player
-        float distance = Vector3.Distance(target.position, transform.position);
-
-        // If inside the radius
-        if (distance <= lookRadius)
+        switch (_state)
         {
-            // Move towards the player+
-            agent.SetDestination(target.position);
-            if (distance <= agent.stoppingDistance)
-            {
-                // Attack
+            case MonsterState.Idle:
 
-            }
+                break;
+            case MonsterState.Searching:
+                // Get the distance to the player
+                float distance = Vector3.Distance(target.position, transform.position);
+
+                // If inside the radius
+                if (distance <= lookRadius)
+                {
+                    // Move towards the player+
+                    agent.SetDestination(target.position);
+                    if (distance <= agent.stoppingDistance)
+                    {
+                        // Attack
+
+                    }
+                }
+                break;
+            case MonsterState.Hunting:
+
+                break;
         }
     }
 
