@@ -1,15 +1,19 @@
-﻿Shader "Custom/xrayshader" 
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+Shader "Custom/xrayshader" 
 {
 	Properties
 	{
-		_MainTex("Texture", 2D) = "white" {}
-		_RampTex("Ramp", 2D) = "white" {}
-		_SilColor("Silouette Color", Color) = (0, 0, 0, 1)
+		_VisorRange("_VisorRange", Range (0, 20)) = 8
+		_CableColor("_CableColor", Color) = (1, 0, 0.5, 1)
+		//_MainTex("Texture", 2D) = "white" {}
+		//_RampTex("Ramp", 2D) = "white" {}
+		_SilColor("Silouette Color", Color) = (1, 0, 0.5, 1)
 	}
 
 	SubShader
 	{
-		// Regular color & lighting pass
+ 		// Regular color & lighting pass
 		Pass
 		{
             Tags
@@ -34,9 +38,10 @@
 			#include "UnityCG.cginc"
 
 			// Properties
-			
-			sampler2D _MainTex;
-			sampler2D _RampTex;
+			//float4 _PlayerPos; 
+			float4 _CableColor;
+			//sampler2D _MainTex;
+			//sampler2D _RampTex;
 			float4 _LightColor0; // provided by Unity
 
 			struct vertexInput
@@ -73,12 +78,12 @@
 			{
 				float3 lightDir = normalize(_WorldSpaceLightPos0.xyz);
 				float ramp = clamp(dot(input.normal, lightDir), 0, 1.0);
-				float3 lighting = tex2D(_RampTex, float2(ramp, 0.5)).rgb;
+				//float3 lighting = tex2D(_RampTex, float2(ramp, 0.5)).rgb;
 				
-				float4 albedo = tex2D(_MainTex, input.texCoord.xy);
-
+				//float4 albedo = tex2D(_MainTex, input.texCoord.xy);
+				float4 albedo = _CableColor;
 				float attenuation = LIGHT_ATTENUATION(input); // shadow value
-				float3 rgb = albedo.rgb * _LightColor0.rgb * lighting * attenuation;
+				float3 rgb = albedo.rgb * _LightColor0.rgb  * attenuation;//* lighting;
 				return float4(rgb, 1.0);
 			}
 
@@ -141,9 +146,10 @@
 			#pragma vertex vert
 			#pragma fragment frag
 
-			// Properties
+			// Properties			
+			float4 _PlayerPos;
 			uniform float4 _SilColor;
-
+			float _VisorRange;
 			struct vertexInput
 			{
 				float4 vertex : POSITION;
@@ -151,6 +157,7 @@
 
 			struct vertexOutput
 			{
+				float4 worldPos : POSITION1;
 				float4 pos : SV_POSITION;
 			};
 
@@ -158,11 +165,19 @@
 			{
 				vertexOutput output;
 				output.pos = UnityObjectToClipPos(input.vertex);
+				output.worldPos = mul(unity_ObjectToWorld, input.vertex);
+
 				return output;
 			}
 
 			float4 frag(vertexOutput input) : COLOR
 			{
+				float3 distance = (input.worldPos.xyz-_PlayerPos.xyz);
+ 			if(length(distance)>_VisorRange){
+
+			//clip(-1);
+			return float4(1,0,1,0);
+			}
 				return _SilColor;
 			}
 
@@ -174,7 +189,7 @@
 		{
 			Tags
             {
-                "Queue" = "Transparent"
+                "Queue" = "Transparent" "RenderType"="Transparent"
             }
 			// Won't draw where it sees ref value 4
 			Cull Back // draw front faces
@@ -193,7 +208,8 @@
 			#pragma fragment frag
 
 			// Properties
-			float4 _PlayerPos;
+			 float4 _PlayerPos;
+			 float _VisorRange;
 			uniform float4 _SilColor;
 
 			struct vertexInput
@@ -204,19 +220,27 @@
 			struct vertexOutput
 			{
 				float4 pos : SV_POSITION;
+				float4 worldPos : POSITION1;
+
 			};
 
 			vertexOutput vert(vertexInput input)
 			{
 				vertexOutput output;
 				output.pos = UnityObjectToClipPos(input.vertex);
+				output.worldPos = mul(unity_ObjectToWorld, input.vertex);
 				return output;
 			}
 
 			float4 frag(vertexOutput input) : COLOR
 			{
+				float3 distance = (input.worldPos.xyz-_PlayerPos.xyz);
+			 //return float4(frac(_PlayerPos.xyz),1);
+			if(length(distance)>_VisorRange){
 
-			return float4(frac(_PlayerPos.xyz),1);
+			//clip(-1);
+			 return float4(1,0,1,0);
+			}
 				return _SilColor;
 			}
 
