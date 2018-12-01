@@ -13,6 +13,10 @@ public class Monster : MonoBehaviour
     Transform _target;
     NavMeshAgent _agent;
 
+    [SerializeField]
+    Transform[] _patroulPath;
+    int _currentPatroulPoint = -1;
+
     enum MonsterState
     {
         Idle,
@@ -67,6 +71,7 @@ public class Monster : MonoBehaviour
             if(destDistance <= _agent.stoppingDistance)
             {
                 _agent.speed /= 2;
+                _currentPatroulPoint = -1;
                 _state = MonsterState.Searching;
             }
         }
@@ -74,7 +79,11 @@ public class Monster : MonoBehaviour
 
     void patroul()
     {
-
+        float destDistance = Vector3.Distance(_agent.destination, transform.position);
+        if (_currentPatroulPoint == -1 || destDistance <= _agent.stoppingDistance)
+        {
+            _agent.SetDestination(_patroulPath[(_currentPatroulPoint + 1)%_patroulPath.Length].position);
+        }
 
         float distance = Vector3.Distance(_target.position, transform.position);
         if (distance <= _smellRadius)
