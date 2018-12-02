@@ -194,7 +194,7 @@ Shader "Custom/xrayshader"
 				alphaVal = max(alphaVal, (1-distance/ _VisorRange));
 				//alphaVal = fmod(400 + distance -sin(_Time.y*1)*10, 4);*/
 
- 			if( distance > _VisorRange ){ //&& alphaVal  > 1	//this thing is not useless
+ 			if( distance > _VisorRange*1.5 ){ //&& alphaVal  > 1	//this thing is not useless
 			
 			//clip(-1);
 			return float4(1,0,1,0);

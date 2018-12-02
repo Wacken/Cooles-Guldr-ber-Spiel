@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Death : MonoBehaviour {
     public Material monsterMat;
+    public Material xrayMat;
     public static Death instance;
     public void Awake()
     {
@@ -15,6 +16,7 @@ public class Death : MonoBehaviour {
     {
         monsterMat.SetFloat("_DarknessNoiseRange", 3);
         monsterMat.SetFloat("_DarknessDistance", 5.3f);
+        //xrayMat.SetFloat("_VisorRange", 18);
     }
     public void death()
     {
@@ -72,11 +74,11 @@ public class Death : MonoBehaviour {
     {
         for (float f = monsterMat.GetFloat("_DarknessNoiseRange"); f <= 30; f *= 1.1f)
         {
-
+            //xrayMat.SetFloat("_VisorRange", f);
             monsterMat.SetFloat("_DarknessNoiseRange", f);
             yield return null;
         }
-        for (float f = monsterMat.GetFloat("_DarknessDistance"); f <= 60; f *= 1.1f)
+        for (float f = monsterMat.GetFloat("_DarknessDistance"); f <= 100; f *= 1.1f)
         {
 
             monsterMat.SetFloat("_DarknessDistance", f);
