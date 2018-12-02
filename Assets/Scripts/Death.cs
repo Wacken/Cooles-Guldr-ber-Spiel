@@ -47,7 +47,7 @@ public class Death : MonoBehaviour {
     IEnumerator RestartLevelCoroutine()
     {
         Debug.Log("Restarting scene in 5 seconds");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         
         SceneManager.LoadScene(1);
     }
