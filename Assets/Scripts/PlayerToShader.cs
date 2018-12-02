@@ -7,6 +7,12 @@ public class PlayerToShader : MonoBehaviour {
     public GameObject MonsterObject;
     public bool VisorOn = true;
     public Material visorMaterial;
+    public AudioSource PlayerAudioSource;
+    //public AudioSource VisorStop;
+   // public AudioSource VisorRun;
+    public AudioClip cVisorStart;
+    public AudioClip cVisorStop;
+    public AudioClip cVisorRun;
  
 
     // Use this for initialization
@@ -24,6 +30,7 @@ public class PlayerToShader : MonoBehaviour {
         {
             Debug.Log("MONSTER NOT FOUND ERROR");
         }
+        
     }
     public void toggleVisor()
     {
@@ -35,6 +42,17 @@ public class PlayerToShader : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.E))
         {
             toggleVisor();
+            if (VisorOn == true)
+            {
+                PlayerAudioSource.clip = cVisorStart;
+                PlayerAudioSource.Play();
+                PlayerAudioSource.clip = cVisorRun;
+                PlayerAudioSource.Play();
+                
+            }
+            PlayerAudioSource.clip = cVisorStop;
+
+            PlayerAudioSource.Play();
         }
         Color pos = new Color(PlayerObject.transform.position.x, PlayerObject.transform.position.y, PlayerObject.transform.position.z);
         Shader.SetGlobalColor("_PlayerPos", pos);
