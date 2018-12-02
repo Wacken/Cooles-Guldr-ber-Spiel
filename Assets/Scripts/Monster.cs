@@ -1,14 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using UnityStandardAssets.Characters.FirstPerson;
 
 /* Makes enemies follow and attack the player */
 
 public class Monster : MonoBehaviour
 {
-    public float _smellRadius = 10f;
+    [SerializeField]
+    float _smellRadiusWithout = 30f;
+    float _smellRadius = 30f;
 
-    public AudioClip _monsterSound;
+    [SerializeField]
+    float _smellRadiusVisor = 50f;
+
+    public AudioClip _searchingSound;
+    public AudioClip _huntingSound;
 
     Transform _target;
     NavMeshAgent _agent;
@@ -35,15 +42,23 @@ public class Monster : MonoBehaviour
 
     void Start()
     {
-        _target = Player.instance.player.transform;
+        _target = Player.instance._player.transform;
         _agent = GetComponent<NavMeshAgent>();
         _audioSource = GetComponent<AudioSource>();
-        _audioSource.clip = _monsterSound;
-        playSound(1.2f);
+        _audioSource.clip = _searchingSound;
+        _audioSource.Play();
     }
 
     void Update()
     {
+        if (Player.instance._playerToShader.VisorOn || !Player.instance._player.GetComponent<FirstPersonController>().m_IsWalking)
+        {
+            _smellRadius = _smellRadiusVisor;
+        }
+        else
+        {
+            _smellRadius = _smellRadiusWithout;
+        }
         switch (_state)
         {
             case MonsterState.Idle:
@@ -83,7 +98,8 @@ public class Monster : MonoBehaviour
             {
                 _agent.speed = _searchingSpeed;
                 _currentPatroulPoint = -1;
-                playSound(0.8f);
+                _audioSource.clip = _searchingSound;
+                _audioSource.Play();
                 _state = MonsterState.Searching;
             }
         }
@@ -100,7 +116,9 @@ public class Monster : MonoBehaviour
         float distance = Vector3.Distance(_target.position, transform.position);
         if (distance <= _smellRadius)
         {
-            playSound(1.2f);
+            _audioSource.clip = _huntingSound;
+            _audioSource.loop = false;
+            _audioSource.Play();
             _state = MonsterState.Hunting;
         }
     }
@@ -109,11 +127,5 @@ public class Monster : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _smellRadius);
-    }
-
-    void playSound(float pitch )
-    {
-        _audioSource.pitch = pitch;
-        _audioSource.PlayScheduled(200);
     }
 }

@@ -18,5 +18,7 @@ public class Player : MonoBehaviour
 
     #endregion
 
-    public GameObject player;
+    public GameObject _player;
+
+    public PlayerToShader _playerToShader;
 }
