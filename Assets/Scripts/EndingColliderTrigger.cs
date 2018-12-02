@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EndingColliderTrigger : MonoBehaviour {
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         Death.instance.deathEnding();
     }

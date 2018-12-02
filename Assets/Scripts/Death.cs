@@ -82,6 +82,7 @@ public class Death : MonoBehaviour {
             monsterMat.SetFloat("_DarknessDistance", f);
             yield return null;
         }
+        yield return new WaitForSeconds(4f);
         SceneManager.LoadScene(0);
     }
 }

@@ -21671,6 +21671,11 @@ Prefab:
       propertyPath: visorVision
       value: 
       objectReference: {fileID: 347720450}
+    - target: {fileID: 114407470115066098, guid: 984b17fe9c06d024c9557c223b792d17,
+        type: 2}
+      propertyPath: VisorOn
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 984b17fe9c06d024c9557c223b792d17, type: 2}
   m_IsPrefabAsset: 0
@@ -31203,6 +31208,10 @@ Prefab:
         type: 2}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1058986916918966, guid: ce780bd3ff9a3d44192c7ebc954aa4dc, type: 2}
+      propertyPath: m_Name
+      value: ENDING COLLIDER
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce780bd3ff9a3d44192c7ebc954aa4dc, type: 2}
