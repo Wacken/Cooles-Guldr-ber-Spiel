@@ -50,7 +50,9 @@
 				if(_VisorOn>0){
 				
 				col/=2;
-				col.b=	col.b*2+cos(i.uv.x+_Time.y)*col.b;
+				col.b=	col.b*2
+				+clamp((cos(i.uv.x+_Time.y)*3*col.b),0,1)
+				;
 				}
 				return col;
 			}
