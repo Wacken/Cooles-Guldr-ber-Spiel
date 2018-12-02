@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class Death : MonoBehaviour {
     public Material monsterMat;
     public static Death instance;
@@ -23,7 +24,7 @@ public class Death : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
             death();
             StartCoroutine(RestartLevelCoroutine());

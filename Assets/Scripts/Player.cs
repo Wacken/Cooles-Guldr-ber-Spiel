@@ -21,4 +21,5 @@ public class Player : MonoBehaviour
     public GameObject _player;
 
     public PlayerToShader _playerToShader;
+
 }
