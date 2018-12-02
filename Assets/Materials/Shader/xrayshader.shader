@@ -7,7 +7,7 @@ Shader "Custom/xrayshader"
 		_PingModulo("_PingModulo", Range (0, 30)) = 8 
 		_VisorRange("_VisorRange", Range (0, 30)) = 12
 		_PingSpeed("_PingSpeed", Range (0, 30)) = 4
-		_CableColor("_CableColor", Color) = (1, 0, 0.5, 1)
+		_CableColor("_CableColor", Color) = (0.2, 0.4, 0.1, 1)
 		//_MainTex("Texture", 2D) = "white" {}
 		//_RampTex("Ramp", 2D) = "white" {}
 		_SilColor("Silouette Color", Color) = (1, 0, 0.5, 1)
