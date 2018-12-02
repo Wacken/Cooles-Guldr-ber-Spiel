@@ -48,8 +48,9 @@
 				// sample the texture
 				fixed4 col = tex2D(_MainTex, i.uv); 
 				if(_VisorOn>0){
+				
 				col/=2;
-				col.b=	0.1+col.b*2;
+				col.b=	col.b*2+cos(i.uv.x+_Time.y)*col.b;
 				}
 				return col;
 			}

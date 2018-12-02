@@ -96,6 +96,7 @@ Material:
     - _Parallax: 0.02
     - _SrcBlend: 1
     - _SwitchDirec: 1
+    - _TentacleLength: 2.5
     - _Transp: 0.128
     - _Transparency: 0.837
     - _UVSec: 0

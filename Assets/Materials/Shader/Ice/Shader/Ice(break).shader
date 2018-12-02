@@ -5,6 +5,7 @@
 Shader "Olanigan/IceBreak" {
     Properties {
 	
+	_TentacleLength("_TentacleLength", Range (0, 30)) = 2 
 		_DarknessNoiseRange("_DanknessNoiseRange", Range (0, 30)) = 2 
 		_DarknessNoise("_DanknessNoise", Range (0.5, 10)) = 2
 		_DarknessDistance("_DanknessDistance", Range (0, 30)) = 5 
@@ -69,6 +70,7 @@ Shader "Olanigan/IceBreak" {
 			float _DarknessNoiseRange;
 			float _DarknessDistance;
 			float _DarknessNoise;
+			float _TentacleLength;
 			float4 _MonsterPos;
             struct VertexInput {
                 float4 vertex : POSITION;
@@ -283,6 +285,7 @@ Shader "Olanigan/IceBreak" {
 			float _DarknessNoiseRange;
 			float _DarknessDistance;
 			float _DarknessNoise;
+			float _TentacleLength;
 			float4 _MonsterPos;
             struct VertexInput {
                 float4 vertex : POSITION;
@@ -323,9 +326,23 @@ Shader "Olanigan/IceBreak" {
                 return o;
             }
             float4 frag(VertexOutput i) : COLOR { 
-			float distance = length(i.posWorld.xyz-_MonsterPos.xyz)-_DarknessNoiseRange*(sin(_Time.y)*0.5+0.75)*frac(_DarknessNoise*snoise(i.posWorld.xyz));
+			float distance = length(i.posWorld.xyz-_MonsterPos.xyz)
+			-_DarknessNoiseRange*(cos(2+_Time.y)*0.6+0.25)*frac(_DarknessNoise*snoise(i.posWorld.zyx))
+			-_DarknessNoiseRange*(sin(1+_Time.y)*0.5+0.75)*frac(_DarknessNoise*snoise(i.posWorld.xyz))
+			+_TentacleLength*(-(sin(3+_Time.y)*0.25+0.75)*frac(snoise(0.125*i.posWorld.xyz))
+			+(cos(2+_Time.y)*0.3+0.25)*frac(snoise(-0.25*i.posWorld.xyz)))
+			- 0.5*(sin(_Time.y+i.posWorld.x))
+			- 0.5*(cos(_Time.y+i.posWorld.y))
+			;
 				if(distance<_DarknessDistance){
-				return float4(0,0,0,1);
+				float r = 0;
+				//float randomTime = modf(_Time.y*20, 100);
+				//if(randomTime<20){
+				//r = cos(distance*0.5*randomTime)-(distance+1)/3;
+				//}
+				
+
+				return float4(r,0,0,1);
 				}
 				
 
