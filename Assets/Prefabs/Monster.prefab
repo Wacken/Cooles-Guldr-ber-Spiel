@@ -55,7 +55,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -148,15 +148,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2eb4a35b3a622b4cab83b04635fef93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _smellRadius: 30
-  _monsterSound: {fileID: 8300000, guid: e7fb31ef15588e542bb3b13a9445274c, type: 3}
+  _smellRadiusWithout: 30
+  _smellRadiusVisor: 50
+  _searchingSound: {fileID: 8300000, guid: b01b45340ba5c384096f51fc0c03b58f, type: 3}
+  _huntingSound: {fileID: 8300000, guid: 3f13ed0a6010dea49a25c0563e8bdfc4, type: 3}
   _patroulPath:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   _searchingSpeed: 10
   _huntingSpeed: 20
-  _state: 2
+  _state: 0
 --- !u!195 &195305705891436172
 NavMeshAgent:
   m_ObjectHideFlags: 1
