@@ -38,6 +38,7 @@ public class Monster : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _audioSource = GetComponent<AudioSource>();
         _audioSource.clip = _monsterSound;
+        playSound(1.2f);
     }
 
     void Update()
@@ -81,7 +82,7 @@ public class Monster : MonoBehaviour
             {
                 _agent.speed = _searchingSpeed;
                 _currentPatroulPoint = -1;
-                playSound(20);
+                playSound(0.8f);
                 _state = MonsterState.Searching;
             }
         }
@@ -98,7 +99,7 @@ public class Monster : MonoBehaviour
         float distance = Vector3.Distance(_target.position, transform.position);
         if (distance <= _smellRadius)
         {
-            playSound(50);
+            playSound(1.2f);
             _state = MonsterState.Hunting;
         }
     }
@@ -109,9 +110,9 @@ public class Monster : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, _smellRadius);
     }
 
-    void playSound(int volume )
+    void playSound(float pitch )
     {
-        _audioSource.volume = volume;
-        _audioSource.Play();
+        _audioSource.pitch = pitch;
+        _audioSource.PlayScheduled(200);
     }
 }
