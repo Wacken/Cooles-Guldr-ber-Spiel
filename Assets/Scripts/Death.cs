@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class Death : MonoBehaviour {
     public Material monsterMat;
     public static Death instance;
-    public void Start()
+    public void Awake()
     {
         instance = this; //Death.instance.death()
         resetShader();
