@@ -77,9 +77,9 @@ Material:
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
-    - _DarknessDistance: 5.3
+    - _DarknessDistance: 57.423973
     - _DarknessNoise: 2
-    - _DarknessNoiseRange: 3
+    - _DarknessNoiseRange: 29.54921
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _Freezeeffectnormal: 8.66
