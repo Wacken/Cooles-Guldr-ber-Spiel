@@ -19,6 +19,12 @@ public class Death : MonoBehaviour {
     public void death()
     {
         StartCoroutine(FadeToDeath());
+        StartCoroutine(RestartLevelCoroutine());
+    }
+
+    public void deathEnding()
+    {
+        StartCoroutine(FadeToDeathSceneReload());
     }
 
 
@@ -27,7 +33,7 @@ public class Death : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.F1))
         {
             death();
-            StartCoroutine(RestartLevelCoroutine());
+            //StartCoroutine(RestartLevelCoroutine());
         }
         if (Input.GetKeyDown(KeyCode.Return))
         {
@@ -40,8 +46,10 @@ public class Death : MonoBehaviour {
 
     IEnumerator RestartLevelCoroutine()
     {
+        Debug.Log("Restarting scene in 5 seconds");
         yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
+        SceneManager.LoadScene(1);
     }
 
     IEnumerator FadeToDeath()
@@ -74,6 +82,6 @@ public class Death : MonoBehaviour {
             monsterMat.SetFloat("_DarknessDistance", f);
             yield return null;
         }
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 }

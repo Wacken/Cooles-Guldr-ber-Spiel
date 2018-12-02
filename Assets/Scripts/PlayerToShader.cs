@@ -7,7 +7,7 @@ public class PlayerToShader : MonoBehaviour
 {
     public GameObject PlayerObject;
     public GameObject MonsterObject;
-    public bool VisorOn = true;
+    public bool VisorOn = false;
     public Material visorMaterial;
     public AudioSource PlayerAudioSource;
     //public AudioSource VisorStop;
