@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerToShader : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerToShader : MonoBehaviour
     public AudioClip cVisorStart;
     public AudioClip cVisorStop;
     public AudioClip cVisorRun;
+    public Image visorVision;
 
 
     // Use this for initialization
@@ -37,6 +39,7 @@ public class PlayerToShader : MonoBehaviour
     public void toggleVisor()
     {
         VisorOn = !VisorOn;
+        visorVision.fillAmount = VisorOn ? 1 : 0;
         Shader.SetGlobalFloat("_VisorOn", VisorOn ? 1 : 0);
     }
     // Update is called once per frame
