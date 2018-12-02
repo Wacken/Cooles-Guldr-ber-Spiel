@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TriggerForDistance : MonoBehaviour {
 
+    [SerializeField]
     float _radius;
     [SerializeField]
     AudioSource _source;
@@ -21,6 +22,10 @@ public class TriggerForDistance : MonoBehaviour {
         {
             _doTheStuff = false;
             _source.Play();
+        }
+        if(!_source.isPlaying && !_doTheStuff)
+        {
+            _source.maxDistance = 40;
         }
     }
 
