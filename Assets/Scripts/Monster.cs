@@ -62,7 +62,20 @@ public class Monster : MonoBehaviour
         switch (_state)
         {
             case MonsterState.Idle:
-
+                float distance = Vector3.Distance(_target.position, transform.position);
+                if (distance <= _smellRadiusVisor)
+                {
+                    _agent.SetDestination(_patroulPath[0].position);
+                }
+                else
+                {
+                    break;
+                }
+                float destDistance = Vector3.Distance(_agent.destination, transform.position);
+                if (destDistance <= _agent.stoppingDistance)
+                {
+                    _state = MonsterState.Searching;
+                }
                 break;
             case MonsterState.Searching:
                 if (_patroulPath.Length <= 0) break;
