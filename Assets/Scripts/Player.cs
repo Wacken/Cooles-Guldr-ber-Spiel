@@ -22,5 +22,4 @@ public class Player : MonoBehaviour
 
     public PlayerToShader _playerToShader;
 
-    public GameObject _spawnServer;
 }

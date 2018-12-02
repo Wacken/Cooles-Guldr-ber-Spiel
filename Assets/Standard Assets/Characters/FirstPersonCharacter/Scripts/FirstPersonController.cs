@@ -29,7 +29,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
 
         [SerializeField] AudioSource _breathing;
-        [SerializeField] Transform _serverSpawn;
 
         private Camera m_Camera;
         private bool m_Jump;
