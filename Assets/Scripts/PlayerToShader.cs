@@ -25,13 +25,16 @@ public class PlayerToShader : MonoBehaviour {
             Debug.Log("MONSTER NOT FOUND ERROR");
         }
     }
-	
+    public void toggleVisor()
+    {
+            VisorOn = !VisorOn;
+            Shader.SetGlobalFloat("_VisorOn", VisorOn?1:0);
+    }
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            VisorOn = !VisorOn;
-            Shader.SetGlobalFloat("_VisorOn", VisorOn?1:0);
+            toggleVisor();
         }
         Color pos = new Color(PlayerObject.transform.position.x, PlayerObject.transform.position.y, PlayerObject.transform.position.z);
         Shader.SetGlobalColor("_PlayerPos", pos);
