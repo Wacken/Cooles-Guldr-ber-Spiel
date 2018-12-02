@@ -58,4 +58,21 @@ public class Death : MonoBehaviour {
             yield return null;
         }
     }
+
+    IEnumerator FadeToDeathSceneReload()
+    {
+        for (float f = monsterMat.GetFloat("_DarknessNoiseRange"); f <= 30; f *= 1.1f)
+        {
+
+            monsterMat.SetFloat("_DarknessNoiseRange", f);
+            yield return null;
+        }
+        for (float f = monsterMat.GetFloat("_DarknessDistance"); f <= 60; f *= 1.1f)
+        {
+
+            monsterMat.SetFloat("_DarknessDistance", f);
+            yield return null;
+        }
+        SceneManager.LoadScene(1);
+    }
 }
