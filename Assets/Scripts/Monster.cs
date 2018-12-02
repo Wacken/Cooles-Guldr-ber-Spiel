@@ -30,6 +30,7 @@ public class Monster : MonoBehaviour
         Hunting
     }
 
+    [SerializeField]
     MonsterState _state = MonsterState.Hunting;
 
     void Start()
@@ -72,7 +73,7 @@ public class Monster : MonoBehaviour
             if (distance <= _agent.stoppingDistance)
             {
                 // Attack
-                //Death.instance.death();
+                Death.instance.death();
             }
         }
         else
@@ -93,7 +94,7 @@ public class Monster : MonoBehaviour
         float destDistance = Vector3.Distance(_agent.destination, transform.position);
         if (_currentPatroulPoint == -1 || destDistance <= _agent.stoppingDistance)
         {
-            _agent.SetDestination(_patroulPath[(_currentPatroulPoint + 1)%_patroulPath.Length].position);
+            _agent.SetDestination(_patroulPath[(++_currentPatroulPoint)%_patroulPath.Length].position);
         }
 
         float distance = Vector3.Distance(_target.position, transform.position);
