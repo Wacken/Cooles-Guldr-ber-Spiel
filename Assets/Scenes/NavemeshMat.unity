@@ -20061,6 +20061,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 198
   m_LocalEulerAnglesHint: {x: -3.0900002, y: 148.35, z: -87.888}
+--- !u!1 &694922213 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1316433850497660, guid: 984b17fe9c06d024c9557c223b792d17,
+    type: 2}
+  m_PrefabInternal: {fileID: 739837920}
+--- !u!114 &694922221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 694922213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: d10bffbebbf605b4195bee77e2dcb7d6, type: 2}
 --- !u!1 &700283327
 GameObject:
   m_ObjectHideFlags: 0
@@ -21684,7 +21701,12 @@ Prefab:
     - target: {fileID: 108368422479996812, guid: 984b17fe9c06d024c9557c223b792d17,
         type: 2}
       propertyPath: m_Intensity
-      value: 1
+      value: 1.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 82047710079749372, guid: 984b17fe9c06d024c9557c223b792d17,
+        type: 2}
+      propertyPath: Pan2D
+      value: 0.17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 984b17fe9c06d024c9557c223b792d17, type: 2}
