@@ -66,7 +66,7 @@ public class Monster : MonoBehaviour
                 if (distance <= _smellRadiusVisor)
                 {
                     _agent.SetDestination(_patroulPath[0].position);
-                    _agent.speed = 100;
+                    _agent.speed = 50;
                 }
                 else
                 {
