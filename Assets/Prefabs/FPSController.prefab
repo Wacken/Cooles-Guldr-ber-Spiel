@@ -623,8 +623,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.5
-  m_Range: 30
+  m_Intensity: 1
+  m_Range: 50.608475
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -848,7 +848,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerObject: {fileID: 1840245205360056}
   MonsterObject: {fileID: 0}
-  VisorOn: 1
+  VisorOn: 0
   visorMaterial: {fileID: 2100000, guid: 06b8913138e48d6429951cc79630971e, type: 2}
   PlayerAudioSource: {fileID: 82357872096767230}
   cVisorStart: {fileID: 8300000, guid: 651574364736b2d4b8ed50f07f3df7dc, type: 3}
