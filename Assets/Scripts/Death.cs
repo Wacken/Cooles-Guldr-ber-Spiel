@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class Death : MonoBehaviour {
     public Material monsterMat;
     public static Death instance;
-    public void Start()
+    public void Awake()
     {
         instance = this; //Death.instance.death()
         resetShader();
@@ -17,7 +17,7 @@ public class Death : MonoBehaviour {
     }
     public void death()
     {
-        StartCoroutine("FadeToDeath");
+        StartCoroutine(FadeToDeath());
     }
 
 
@@ -26,7 +26,7 @@ public class Death : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             death();
-            StartCoroutine("RestartLevelCoroutine");
+            StartCoroutine(RestartLevelCoroutine());
         }
         if (Input.GetKeyDown(KeyCode.Return))
         {
@@ -42,7 +42,8 @@ public class Death : MonoBehaviour {
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-        IEnumerator FadeToDeath()
+
+    IEnumerator FadeToDeath()
     {
         for (float f = monsterMat.GetFloat("_DarknessNoiseRange"); f <= 30; f *= 1.1f)
         {

@@ -28,6 +28,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
 
+        [SerializeField] AudioSource _breathing;
+
         private Camera m_Camera;
         private bool m_Jump;
         private float m_YRotation;
@@ -216,6 +218,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
 #endif
             // set the desired speed to be walking or running
             speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
+            if (!m_IsWalking && !_breathing.isPlaying)
+            {
+                _breathing.Play();
+            }
             m_Input = new Vector2(horizontal, vertical);
 
             // normalize input if it exceeds 1 in combined length:
