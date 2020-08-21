@@ -8,11 +8,7 @@ public class TriggerForDistance : MonoBehaviour {
     float _radius;
     [SerializeField]
     AudioSource _source;
-    bool _doTheStuff = true;
-	// Use this for initialization
-	void Start () {
-		
-	}
+    bool _doTheStuff = true; 
 	
 	// Update is called once per frame
 	void Update ()

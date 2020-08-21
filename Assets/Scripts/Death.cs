@@ -7,6 +7,7 @@ public class Death : MonoBehaviour {
     public Material monsterMat;
     public Material xrayMat;
     public Text endingText;
+    public Text creditsText;
 
     public static bool invulnerable = false;
     public static Death instance;
@@ -41,7 +42,7 @@ public class Death : MonoBehaviour {
             death();
             //StartCoroutine(RestartLevelCoroutine());
         }
-        if (Input.GetKeyDown(KeyCode.F3))
+        if (Input.GetKeyDown(KeyCode.F4))
         {
             StopAllCoroutines();
             resetShader();
@@ -51,7 +52,10 @@ public class Death : MonoBehaviour {
         {
             invulnerable = !invulnerable;
         }
-
+        if (Input.GetKeyDown(KeyCode.F3))
+        { 
+            creditsText.gameObject.SetActive(!creditsText.gameObject.activeSelf);
+        }
 
 
 
