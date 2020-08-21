@@ -760,7 +760,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Controls: \nWASD \nShift to Sprint\nE to turn on your Visor\n \nF1: Reset
-    (Suicide)\nF2: Toggle Invulnerability Cheat\nF3: Toggle Credits"
+    (Suicide)\nF2: Toggle Invulnerability Cheat\nF3: Toggle Credits\nF4: Toggle Tips\n"
 --- !u!222 &1266887757
 CanvasRenderer:
   m_ObjectHideFlags: 0

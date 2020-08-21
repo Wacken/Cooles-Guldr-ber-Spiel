@@ -8,6 +8,7 @@ public class Death : MonoBehaviour {
     public Material xrayMat;
     public Text endingText;
     public Text creditsText;
+    public Text tipsText;
 
     public static bool invulnerable = false;
     public static Death instance;
@@ -56,8 +57,11 @@ public class Death : MonoBehaviour {
         { 
             creditsText.gameObject.SetActive(!creditsText.gameObject.activeSelf);
         }
-
-
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            tipsText.gameObject.SetActive(!tipsText.gameObject.activeSelf);
+        }
+        
 
 
 
