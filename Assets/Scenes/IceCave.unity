@@ -723,8 +723,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -98, y: -117.3}
-  m_SizeDelta: {x: 160, y: 195.2}
+  m_AnchoredPosition: {x: -112.5, y: -114.3}
+  m_SizeDelta: {x: 208.1, y: 195.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1266887756
 MonoBehaviour:
@@ -748,7 +748,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -759,8 +759,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Controls: \nWASD \nE to turn on your Visor\n\nCheats:\nF1: Reset (Suicide)\nF2:
-    Invulnerability toggle\nF3: Reset VFX (shaders)"
+  m_Text: "Controls: \nWASD \nShift to Sprint\nE to turn on your Visor\n \nF1: Reset
+    (Suicide)\nF2: Toggle Invulnerability Cheat"
 --- !u!222 &1266887757
 CanvasRenderer:
   m_ObjectHideFlags: 0
