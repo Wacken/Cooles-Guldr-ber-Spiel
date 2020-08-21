@@ -70,7 +70,7 @@ public class Death : MonoBehaviour {
         yield return new WaitForSeconds(3f);
 
 
-        if (Player.instance._playerToShader.VisorOn == true)
+        if (Player.instance._playerToShader.VisorOn)
         {
             Player.instance._playerToShader.PlayerAudioSource.Stop();
             Player.instance._playerToShader.PlayerAudioSource.volume = 0.4f;
@@ -105,8 +105,9 @@ public class Death : MonoBehaviour {
         Debug.Log("Death");
         endingText.text = "You have have been consumed";
         endingText.gameObject.SetActive(true);
-
-        if (Player.instance._playerToShader.VisorOn == true)
+        
+        bool breakVisor = Player.instance._playerToShader.VisorOn;
+        if (breakVisor)
         {
             Player.instance._playerToShader.PlayerAudioSource.Stop();
             Player.instance._playerToShader.PlayerAudioSource.volume = 0.4f;
@@ -116,16 +117,17 @@ public class Death : MonoBehaviour {
             Player.instance._playerToShader.toggleVisor();
         }
 
-
         for (float f = monsterMat.GetFloat("_DarknessNoiseRange"); f <= 30; f *= 1.1f)
         {
             //xrayMat.SetFloat("_VisorRange", f);
             monsterMat.SetFloat("_DarknessNoiseRange", f);
+            if(breakVisor)
             Player.instance._playerToShader.toggleVisor();  //make the visor flicker off
+
             yield return null;
         }
 
-        if (Player.instance._playerToShader.VisorOn == true)
+        if (Player.instance._playerToShader.VisorOn)
         {
             Player.instance._playerToShader.toggleVisor();
         }
@@ -170,7 +172,7 @@ public class Death : MonoBehaviour {
         yield return new WaitForSeconds(4f);
 
 
-        if (Player.instance._playerToShader.VisorOn == true)
+        if (Player.instance._playerToShader.VisorOn)
         { 
             Player.instance._playerToShader.PlayerAudioSource.Stop();
         Player.instance._playerToShader.PlayerAudioSource.volume = 0.4f;

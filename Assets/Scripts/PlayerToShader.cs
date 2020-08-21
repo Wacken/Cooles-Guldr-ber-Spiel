@@ -48,7 +48,7 @@ public class PlayerToShader : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             toggleVisor();
-            if (VisorOn == true)
+            if (VisorOn)
             {
 
                 PlayerAudioSource.Stop();
