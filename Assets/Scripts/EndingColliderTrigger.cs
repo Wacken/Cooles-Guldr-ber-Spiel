@@ -6,6 +6,6 @@ public class EndingColliderTrigger : MonoBehaviour {
 
     private void OnTriggerEnter(Collider collision)
     {
-        Death.instance.deathEnding();
+        Death.instance.goodEnding();
     }
 }
